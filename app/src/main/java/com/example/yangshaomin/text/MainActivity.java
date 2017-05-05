@@ -34,16 +34,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //判断是否点击了"="按钮
     boolean isClickEqu = false;
     //用来传递参数
-    float numA=0, numB = 0, numC = 0;
+    float numA = 0, numB = 0, numC = 0;
     //判断操作数
     int type = 0;
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     // private GoogleApiClient client;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,9 +112,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.button_clean:
 
                 et_input.setText("");
-                numA=0;
-                numB=0;
-                numC=0;
+                numA = 0;
+                numB = 0;
+                numC = 0;
 
                 break;
 
@@ -252,7 +251,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     return;
                 }
                 //赋值number A
-                numA=Float.valueOf(strreduce);
+                numA = Float.valueOf(strreduce);
                 //清空输入框数值 等待接受number B
                 et_input.setText(null);
                 //定义方法序数
@@ -298,17 +297,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //等于（赋值number B）
             case R.id.button_equal:
 
+
                 String strequal = et_input.getText().toString();
 
                 if (strequal.equals(null)) {
                     return;
 
                 }
-                if(type==4&&strequal.equals("0")){
-                    Toast.makeText(MainActivity.this,"被除数不能为零",Toast.LENGTH_SHORT).show();
+                if (type == 4 && strequal.equals("0")) {
+                    Toast.makeText(MainActivity.this, "被除数不能为零", Toast.LENGTH_SHORT).show();
                     et_input.setText("0");
                 }
-
 
 
                 numB = Float.valueOf(strequal);
@@ -316,11 +315,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 et_input.setText(null);
 
+
                 switch (type) {
 
 
                     case 1:
-                        numC = numA + numB;
+                        numC = numB+ numA;
                         break;
                     case 2:
                         numC = numA - numB;
@@ -332,17 +332,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         numC = numA / numB;
                         break;
                     default:
-                        numC = 0;
+                        numC = numB;
                         break;
 
 
                 }
+
                 et_input.setText(String.valueOf(numC));
-                isClickEqu=true;
+                isClickEqu = true;
+                //操作数为0，不再进行操作
+                type=0;
                 break;
 
-            default:
-                break;
+
+
+
+        default:
+
+        break;
+
 
 
         }
